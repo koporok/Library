@@ -31,7 +31,7 @@ public class DataBase {
         }
     }
 
-    void addItem(ArrayList<Zametka> list){
+    void addItem(ArrayList<Book> list){
         Gson gson = new Gson();
         String jsonList = gson.toJson(list);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -39,12 +39,12 @@ public class DataBase {
         editor.apply();
     }
 
-    ArrayList<Zametka> getItem(String name){
+    ArrayList<Book> getItem(String name){
         String jsonList = sharedPref.getString("listOfItem", null);
         if (jsonList != null) {
             Gson gson = new Gson();
-            Type type = new TypeToken<ArrayList<Zametka>>() {}.getType();
-            ArrayList<Zametka> list = gson.fromJson(jsonList, type);
+            Type type = new TypeToken<ArrayList<Book>>() {}.getType();
+            ArrayList<Book> list = gson.fromJson(jsonList, type);
             return list;
         }
         return null;

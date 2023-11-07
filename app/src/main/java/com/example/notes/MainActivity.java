@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static final int NOTE_ACTIVITY_REQUEST_CODE = 1;
-    public ArrayList<Zametka> NoteList;
+    public ArrayList<Book> BooksList;
     Adapter adapter;
 
     @Override
@@ -22,32 +22,32 @@ public class MainActivity extends AppCompatActivity {
 
         DataBase.createInstance(this);
         if(DataBase.info()){
-            NoteList = DataBase.getInstance().getItem("listOfItem");
+            BooksList = DataBase.getInstance().getItem("listOfItem");
         } else {
-            NoteList = new ArrayList<>();
+            BooksList = new ArrayList<>();
         }
 
         ListView listView = findViewById(R.id.listItem);
-        adapter = new Adapter(this, android.R.layout.simple_expandable_list_item_1, NoteList);
+        adapter = new Adapter(this, android.R.layout.simple_expandable_list_item_1, BooksList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener((parent, v, position, id) -> {
-            Intent intent = new Intent(MainActivity.this, NoteActivity.class);
-            intent.putExtra("item", NoteList.get(position));
+            Intent intent = new Intent(MainActivity.this, BookActivity.class);
+            intent.putExtra("item", BooksList.get(position));
             intent.putExtra("position", position);
             startActivityForResult(intent, NOTE_ACTIVITY_REQUEST_CODE);
         });
 
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
-            NoteList.remove(position);
+            BooksList.remove(position);
             adapter.notifyDataSetChanged();
             return false;
         });
     }
 
     public void onClickButtonAdd(View view){
-        Zametka a = new Zametka("Заметка", "Текст заметки");
-        NoteList.add(a);
+        Book a = new Book("Название книги", "", "", "");
+        BooksList.add(a);
         adapter.notifyDataSetChanged();
     }
 
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == NOTE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK && data != null) {
-                Zametka newItem = (Zametka) data.getSerializableExtra("newItem");
+                Book newItem = (Book) data.getSerializableExtra("newItem");
                 int position1 = data.getIntExtra("position1", -1);
-                NoteList.set(position1, newItem);
-                DataBase.getInstance().addItem(NoteList);
+                BooksList.set(position1, newItem);
+                DataBase.getInstance().addItem(BooksList);
                 adapter.notifyDataSetChanged();
             }
         }

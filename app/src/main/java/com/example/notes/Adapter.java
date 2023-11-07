@@ -13,9 +13,9 @@ import java.util.List;
 public class Adapter extends ArrayAdapter<List> {
 
     private final Context context;
-    private  final List<Zametka> itemName;
+    private  final List<Book> itemName;
 
-    public Adapter(Context context, int resource, List<Zametka> itemName) {
+    public Adapter(Context context, int resource, List<Book> itemName) {
         super(context, resource);
         this.context = context;
         this.itemName = itemName;
