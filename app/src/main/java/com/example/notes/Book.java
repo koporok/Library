@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
     private String title;
-    private String txt;
+    private String genre;
     private String Author;
-    private String FeedBack;
-    Book(String title, String txt, String Author, String feedBack){
+    private String review;
+    Book(String title, String genre, String Author, String review){
         this.title = title;
-        this.txt = txt;
+        this.genre = genre;
         this.Author = Author;
-        this.FeedBack = feedBack;
+        this.review = review;
     }
 
     public String getTitle() {
@@ -22,12 +22,12 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public String getTxt() {
-        return txt;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setTxt(String txt) {
-        this.txt = txt;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getAuthor() {
@@ -38,11 +38,11 @@ public class Book implements Serializable {
         Author = author;
     }
 
-    public String getFeedBack() {
-        return FeedBack;
+    public String getReview() {
+        return review;
     }
 
-    public void setFeedBack(String feedBack) {
-        FeedBack = feedBack;
+    public void setReview(String review) {
+        this.review = review;
     }
 }

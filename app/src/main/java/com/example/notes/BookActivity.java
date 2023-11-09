@@ -27,9 +27,9 @@ public class BookActivity extends AppCompatActivity {
 
 
         titleEditor.setText(book.getTitle());
-        textEditor.setText(book.getTxt());
+        textEditor.setText(book.getGenre());
         Author.setText(book.getAuthor());
-        Feedback.setText(book.getFeedBack());
+        Feedback.setText(book.getReview());
 
         Author.addTextChangedListener(new TextWatcher() {
             @Override
@@ -53,7 +53,7 @@ public class BookActivity extends AppCompatActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                book.setTxt(s.toString());
+                book.setGenre(s.toString());
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -80,7 +80,7 @@ public class BookActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                book.setFeedBack(s.toString());
+                book.setReview(s.toString());
             }
 
             @Override
